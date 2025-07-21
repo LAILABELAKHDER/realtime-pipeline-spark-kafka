@@ -12,21 +12,13 @@ The pipeline fetches user data dynamically from a live API, publishes it onto Ka
 
 ## 🧩 System Architecture
 
-```mermaid
-graph LR
-    API["Random User API"] --> AirflowDAG["Apache Airflow DAG"]
-    AirflowDAG --> Kafka["Apache Kafka + Zookeeper"]
-    Kafka --> Spark["Apache Spark Structured Streaming"]
-    Spark --> Cassandra["Apache Cassandra"]
-```
-
----
+![System Architecture](img/architecture.png)
 
 ## 📌 Key Components
 
 * **Data Source:** Fetches random user data via the [randomuser.me](https://randomuser.me/) API.
 * **Apache Airflow:** Schedules and orchestrates API data retrieval and Kafka publishing tasks.
-* **Apache Kafka & Zookeeper:** Facilitates scalable real-time data streaming.
+* **Apache Kafka & Zookeeper:**  Stream data from PostgreSQL to Spark.
 * **Apache Spark Structured Streaming:** Processes Kafka streams, applying real-time transformations.
 * **Apache Cassandra:** Provides a highly available NoSQL storage solution for processed data.
 
@@ -115,21 +107,8 @@ SELECT * FROM spark_streaming.created_users;
 SELECT count(*) FROM spark_streaming.created_users;
 ```
 
----
 
-## 📚 Learning Outcomes
-
-By working with this pipeline, you will gain practical skills in:
-
-* Designing and orchestrating real-time data pipelines.
-* Leveraging Apache Kafka for scalable streaming.
-* Real-time data transformations using Apache Spark Structured Streaming.
-* Deploying distributed systems efficiently using Docker Compose.
-* Managing NoSQL databases with Apache Cassandra.
-
----
-
-## 🛠 Technologies Used
+## 🛠 Technologies Useds
 
 * Python
 * Apache Airflow
@@ -137,5 +116,6 @@ By working with this pipeline, you will gain practical skills in:
 * Apache Zookeeper
 * Apache Spark 
 * Apache Cassandra
-* Docker & Docker Compose
+* PostgreSQL
+* Docker
 
